@@ -1,31 +1,40 @@
 
-import java.util.ArrayList;
-
-public class Node<E> {
-    E data;
-    ArrayList<Node<E>> children = new ArrayList<>();
+public class Node<E extends Comparable<E>> {
+    private E data;
+    Node<E> left;
+    Node<E> right;
 
     public Node(E data) {
         this.data = data;
+    }
+
+    public Node<E> getChild(E data) {
+        int comparison = data.compareTo(this.data);
+        if (comparison == 0) {
+            return this;
+        } else if (comparison < 0 && this.left != null) {
+            return this.left.getChild(data);
+        } else if (this.right != null) {
+            return this.right.getChild(data);
+        } else {
+            return null;
+        }
+    }
+
+    public void addLeft(Node<E> child) {
+        this.left = child;
+    }
+
+    public void addRight(Node<E> child) {
+        this.right = child;
     }
 
     public E getData() {
         return this.data;
     }
 
-    public void setData(E data) {
-        this.data = data;
-    }
-
-    public void addChild(Node<E> child) {
-        children.add(child);
-    }
-
-    public ArrayList<Node<E>> getChildren() {
-        return children;
-    }
-
-    public boolean equals(Node<E> node) {
-        return this.data.equals(node.data);
+    @Override
+    public String toString() {
+        return data.toString();
     }
 }

@@ -1,15 +1,14 @@
 public class test {
     public static void main(String[] args) {
-        Tree<Integer> bal = new Tree<>(0);
-        Node<Integer> testNode = new Node<>(6);
-        Node<Integer> n = new Node<>(5);
-        testNode.addChild(n);
-        bal.getFirst().addChild(testNode);
+        TreeSet<Integer> newTree = new TreeSet<>(14);
+        int[] list = {4, 3, 15, 18, 16, 9, 20, 7};
+        for (int i = 0; i < list.length; i++) {
+            newTree.insert(new Node<>(list[i]));
+        }
+        System.out.println(newTree.toString());
 
-        System.out.println(bal.getFirst().data);
-        System.out.println(bal.getFirst().getChildren().get(0).data);
-        System.out.println(bal.getFirst().getChildren().get(0).getChildren().get(0).data);
-
+        newTree.remove(18);
+        System.out.println(newTree);
     }
 
 
